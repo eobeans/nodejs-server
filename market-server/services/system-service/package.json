@@ -1,0 +1,22 @@
+{
+  "name": "system-service",
+  "version": "1.0.0",
+  "description": "系统管理服务器",
+  "main": "bin/www.js",
+  "scripts": {
+    "dev": "nodemon bin/www.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "request": "^2.88.2"
+  },
+  "bin": {
+    "project": "bin/www.js"
+  }
+}
