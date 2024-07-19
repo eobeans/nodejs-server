@@ -1,0 +1,10 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["metrics"]
+}
+
+datasource db {
+  provider = "mysql"
+  // TODO: Extract the user/pass to env var asap before finalizing the PR
+  url      = "mysql://root:eobeans@1996@localhost:3306/system"
+}
