@@ -4,7 +4,11 @@
   "description": "系统管理服务器",
   "main": "start.ts",
   "scripts": {
-    "dev": "nodemon start.ts"
+    "dev": "nodemon start.ts",
+    "db:diff": "npx prisma migrate diff --from-empty --to-schema-datamodel data-access/prisma/schema.prisma --script > data-access/prisma/migrations/0_init/migration.sql",
+    "db:apply": "npx prisma migrate resolve --applied 0_init --schema data-access/prisma/schema.prisma",
+    "db:deploy": "npx prisma migrate deploy --schema data-access/prisma/schema.prisma",
+    "db:generate": "npx prisma generate --schema data-access/prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +21,8 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
+    "@prisma/client": "4.16.2",
+    "@sinclair/typebox": "^0.32.34",
     "axios": "^1.7.2",
     "express": "^4.19.2",
     "helmet": "^7.1.0",
