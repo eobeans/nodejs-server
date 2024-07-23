@@ -22,6 +22,6 @@ export function assertSysLoginIsValid(sysLoginRequest: sysLoginDTO) {
   }
   const isValid = validationSchema(sysLoginRequest);
   if (!isValid) {
-    throw new AppError('invalid-sys-login', `Validation failed`, 400, true);
+    throw new AppError('invalid-sys-login', `Validation failed`, 400, false);
   }
 }

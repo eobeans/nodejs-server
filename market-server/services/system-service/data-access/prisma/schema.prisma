@@ -256,6 +256,7 @@ model sys_role {
   update_by   String?   @default("") @db.VarChar(64)
   update_time DateTime? @db.DateTime(0)
   remark      String?   @db.VarChar(500)
+  users     sys_user_role[]
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -297,6 +298,7 @@ model sys_user {
   update_by       String?   @default("") @db.VarChar(64)
   update_time     DateTime? @db.DateTime(0)
   remark          String?   @db.VarChar(500)
+  roles     sys_user_role[]
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -326,6 +328,8 @@ model sys_user_post {
 model sys_user_role {
   user_id BigInt
   role_id BigInt
+  user    sys_user  @relation(fields: [user_id], references: [user_id])  
+  role    sys_role  @relation(fields: [role_id], references: [role_id]) 
 
   @@id([user_id, role_id])
 }

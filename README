@@ -3,3 +3,18 @@ hello world!
 nodejs-server集合了各个系统的后端服务系统
 
 market-server：采用微服务架构的农贸市场管理系统，正在火热开发中……
+
+market-server/services/system-service 系统管理服务
+
+数据库迁移：因为prisma自身的bug，不能使用windowPowerShell迁移数据库，需要使用git bash或cmd迁移数据库
+
+步骤：
+1、在market-server/services/system-service目录下启动git bash 或 cmd
+2、目前使用的是本地的数据库，使用其他数据库请更改schema.prisma文件
+3、npx prisma db pull --schema data-access/prisma/schema.prisma （拉取数据库的ORM模型）
+4、mkdir -p data-access/prisma/migrations/0_init （创建0_init文件夹）
+5、npx prisma migrate diff --from-empty --to-schema-datamodel data-access/prisma/schema.prisma --script > data-access/prisma/migrations/0_init/migration.sql （分析差异形成数据库sql记录）
+6、npx prisma migrate resolve --applied 0_init --schema data-access/prisma/schema.prisma （应用创建的数据库sql记录）
+7、npx prisma migrate deploy --schema data-access/prisma/schema.prisma （部署prisma）
+8、npx prisma generate --schema data-access/prisma/schema.prisma (生成prisma的客户端服务器)
+

@@ -10,6 +10,7 @@ import {
   addRequestId,
 } from '@practica/common-express-middlewares';
 import configurationSchema from '../../config';
+import defineWhiteRoutes from './white-routes';
 import defineRoutes from './routes';
 
 let connection: Server;
@@ -28,6 +29,8 @@ async function startWebServer(): Promise<AddressInfo> {
   );
   const expressApp = express();
   defineCommonMiddlewares(expressApp);
+  defineWhiteRoutes(expressApp);
+  defineCommonJWTMiddlewares(expressApp);
   defineRoutes(expressApp);
   defineErrorHandlingMiddleware(expressApp);
   const APIAddress = await openConnection(expressApp);
@@ -49,6 +52,13 @@ function defineCommonMiddlewares(expressApp: express.Application) {
   expressApp.use(helmet());
   expressApp.use(express.urlencoded({ extended: true }));
   expressApp.use(express.json());
+}
+
+function defineCommonJWTMiddlewares(expressApp: express.Application) {
+  // expressApp.use(addRequestId);
+  // expressApp.use(helmet());
+  // expressApp.use(express.urlencoded({ extended: true }));
+  // expressApp.use(express.json());
   expressApp.use(
     jwtVerifierMiddleware({
       secret: configurationProvider.getValue('jwtTokenSecret'),

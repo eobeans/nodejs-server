@@ -5,8 +5,8 @@
   "main": "start.ts",
   "scripts": {
     "dev": "nodemon start.ts",
-    "db:diff": "npx prisma migrate diff --from-empty --to-schema-datamodel data-access/prisma/schema.prisma --script > data-access/prisma/migrations/0_init/migration.sql",
-    "db:apply": "npx prisma migrate resolve --applied 0_init --schema data-access/prisma/schema.prisma",
+    "db:diff": "npx prisma migrate diff --from-empty --to-schema-datamodel data-access/prisma/schema.prisma --script > data-access/prisma/migrations/20240723094000_baseline/migration.sql",
+    "db:apply": "npx prisma migrate resolve --applied 20240723094000_baseline --schema data-access/prisma/schema.prisma",
     "db:deploy": "npx prisma migrate deploy --schema data-access/prisma/schema.prisma",
     "db:generate": "npx prisma generate --schema data-access/prisma/schema.prisma"
   },
@@ -15,6 +15,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.21",
+    "@types/md5": "^2.3.5",
     "nodemon": "^3.1.0",
     "prisma": "^5.17.0",
     "ts-node": "^10.9.2",
@@ -26,6 +27,8 @@
     "axios": "^1.7.2",
     "express": "^4.19.2",
     "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "md5": "^2.3.0",
     "mysql": "^2.18.1"
   }
 }
