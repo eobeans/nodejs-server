@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { PrismaClient } from '@prisma/client';
-import * as configurationProvider from '@practica/configuration-provider';
+import * as configurationProvider from '../utils/configuration-provider';
 
 let prismaClientInstance: PrismaClient | undefined;
 

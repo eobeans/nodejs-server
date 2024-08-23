@@ -18,3 +18,5 @@ market-server/services/system-service 系统管理服务
 7、npx prisma migrate deploy --schema data-access/prisma/schema.prisma （部署prisma）
 8、npx prisma generate --schema data-access/prisma/schema.prisma (生成prisma的客户端服务器)
 
+初始化数据库：
+1、npx prisma generate --schema data-access/prisma/schema.prisma

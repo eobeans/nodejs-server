@@ -3,7 +3,7 @@ import { assertIsValid } from './validators/auth-validators';
 import { authDTO } from './schema/auth-schema';
 import md5 from "md5";
 import { AppError } from '@practica/error-handling';
-import { utilJwt } from '../utils';
+import { signValidToken } from '../utils/common-express-middlewares';
 
 // ️️️✅ Best Practice: Start a flow with a 'use case' function that summarizes the flow in high-level
 // It should merely tell the feature story without too much information. Kind of a 'yellow pages' of the module
@@ -21,7 +21,7 @@ export async function auth(auth: authDTO) {
       const roleKeys = result2.map((item:any) => {
         return item.role.role_key
       })
-      const token:string = utilJwt.signValidToken(result.login_name, roleKeys)
+      const token:string = signValidToken(result.login_name, roleKeys)
       return token
     } else {
       throw new AppError('invalid-auth', `账户密码错误！`, 400, true);

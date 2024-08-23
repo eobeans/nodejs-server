@@ -4,11 +4,11 @@ import { AddressInfo } from 'net';
 import express from 'express';
 import helmet from 'helmet';
 import { errorHandler } from '@practica/error-handling';
-import * as configurationProvider from '@practica/configuration-provider';
+import * as configurationProvider from '../../utils/configuration-provider';
 import {
   jwtVerifierMiddleware,
   addRequestId,
-} from '@practica/common-express-middlewares';
+} from '../../utils/common-express-middlewares';
 import configurationSchema from '../../config';
 import defineWhiteRoutes from './white-routes';
 import defineRoutes from './routes';
@@ -21,9 +21,9 @@ async function startWebServer(): Promise<AddressInfo> {
   configurationProvider.initializeAndValidate(configurationSchema);
   logger.configureLogger(
     {
-      prettyPrint: Boolean(
-        configurationProvider.getValue('logger.prettyPrint')
-      ),
+      // prettyPrint: Boolean(
+      //   configurationProvider.getValue('logger.prettyPrint')
+      // ),
     },
     true
   );

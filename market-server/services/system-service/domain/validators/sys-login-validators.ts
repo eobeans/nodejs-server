@@ -1,5 +1,5 @@
 import { AppError } from '@practica/error-handling';
-import ajv from '@practica/validation';
+import ajv from '../../utils/validation';
 import { ValidateFunction } from 'ajv';
 import { sysLoginSchema, sysLoginDTO } from '../schema/sys-login-schema';
 
